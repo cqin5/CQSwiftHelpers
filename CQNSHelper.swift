@@ -105,6 +105,11 @@ extension String {
     func contains(string:String) -> Bool {
         return (self.rangeOfString(string) != nil)
     }
+    
+    var base64String:String {
+        let data = self.dataUsingEncoding(NSUTF8StringEncoding);
+        return data.base64EncodedStringWithOptions(0).stringValue;
+    }
 }
 
 extension NSString {
