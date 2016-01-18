@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension CQHelper {
     
@@ -108,7 +109,7 @@ extension String {
     
     var base64String:String {
         let data = self.dataUsingEncoding(NSUTF8StringEncoding);
-        return data.base64EncodedStringWithOptions(0).stringValue;
+        return data!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
     }
 }
 

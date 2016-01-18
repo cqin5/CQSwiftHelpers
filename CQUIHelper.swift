@@ -86,7 +86,6 @@ class CQHelper {
         return viewToBeReturned
     }
     
-    
 }
 
 extension UIButton {
@@ -102,6 +101,16 @@ extension UIButton {
 }
 
 extension UIView {
+    
+    func addTapToDismissKeyboard() {
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "dismissKeyboard"))
+//        print("CQHelper view extension: addTapToDismissKeyboard")
+    }
+    
+    func dismissKeyboard() {
+//        print("CQHelper view extension: dismissKeyboard")
+        self.endEditing(true)
+    }
     
     func getGradient(topColour:UIColor, bottomColour:UIColor) -> UIView {
         let gradient = CAGradientLayer()
@@ -352,6 +361,23 @@ extension UIColor {
             print("Invalid RGB string, missing '#' as prefix", terminator: "")
         }
         self.init(red:red, green:green, blue:blue, alpha:alpha)
+    }
+}
+
+extension UIImage {
+    // credit: http://stackoverflow.com/a/993159/1505603
+    class func imageWithColor(color: UIColor) -> UIImage {
+        let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextFillRect(context, rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
     }
 }
 
